@@ -2,9 +2,9 @@
 
 namespace RobotExercise
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
         }
