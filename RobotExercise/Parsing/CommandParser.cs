@@ -6,7 +6,7 @@ namespace RobotExercise.Parsing
     {
         public ICommand ParseCommand(string command)
         {
-            throw new System.NotImplementedException();
+            throw new InvalidCommandException();
         }
     }
 }
