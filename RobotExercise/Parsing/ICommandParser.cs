@@ -1,7 +1,9 @@
-﻿namespace RobotExercise.Parsing
+﻿using RobotExercise.Commands;
+
+namespace RobotExercise.Parsing
 {
     public interface ICommandParser
     {
-        void ParseCommand(string command);
+        ICommand ParseCommand(string command);
     }
 }

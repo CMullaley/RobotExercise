@@ -1,8 +1,10 @@
-﻿namespace RobotExercise.Parsing
+﻿using RobotExercise.Commands;
+
+namespace RobotExercise.Parsing
 {
     public class CommandParser : ICommandParser
     {
-        public void ParseCommand(string command)
+        public ICommand ParseCommand(string command)
         {
             throw new System.NotImplementedException();
         }
