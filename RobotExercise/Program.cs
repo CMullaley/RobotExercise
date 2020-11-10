@@ -6,7 +6,29 @@ namespace RobotExercise
     {
         static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Simulator simulator = new Simulator();
+            string command;
+
+            Console.Write("> ");
+
+            while (true)
+            {
+                command = Console.ReadLine();
+
+                if (command.ToUpper() == "EXIT")
+                {
+                    break;
+                }
+
+                string output = simulator.ProcessCommand(command);
+
+                if (output != string.Empty)
+                {
+                    Console.WriteLine(output);
+                }
+
+                Console.Write("> ");
+            }
         }
     }
 }
