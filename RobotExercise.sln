@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotExercise", "RobotExercise\RobotExercise.csproj", "{6A0AA470-586C-4DDD-B451-212B4EDFA806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotExercise.AcceptanceTests", "RobotExercise.AcceptanceTests\RobotExercise.AcceptanceTests.csproj", "{FE5721DF-EBCE-4B7A-9BC2-1CDC0FE6A2A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotExercise.AcceptanceTests", "RobotExercise.AcceptanceTests\RobotExercise.AcceptanceTests.csproj", "{FE5721DF-EBCE-4B7A-9BC2-1CDC0FE6A2A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotExercise.UnitTests", "RobotExercise.UnitTests\RobotExercise.UnitTests.csproj", "{51FC02AD-C18D-48F3-9D36-267366059AC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FE5721DF-EBCE-4B7A-9BC2-1CDC0FE6A2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE5721DF-EBCE-4B7A-9BC2-1CDC0FE6A2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE5721DF-EBCE-4B7A-9BC2-1CDC0FE6A2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51FC02AD-C18D-48F3-9D36-267366059AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51FC02AD-C18D-48F3-9D36-267366059AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51FC02AD-C18D-48F3-9D36-267366059AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51FC02AD-C18D-48F3-9D36-267366059AC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RobotExercise.Parsing;
 
 namespace RobotExercise.AcceptanceTests
 {
@@ -51,7 +52,7 @@ namespace RobotExercise.AcceptanceTests
 
         private void RunScenario(string[] commands, string expectedOutput)
         {
-            Simulator simulator = new Simulator();
+            Simulator simulator = new Simulator(new CommandParser());
             string output = string.Empty;
 
             foreach(string command in commands)

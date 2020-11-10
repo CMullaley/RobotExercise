@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobotExercise.Parsing;
+using System;
 
 namespace RobotExercise
 {
@@ -6,7 +7,7 @@ namespace RobotExercise
     {
         static void Main()
         {
-            Simulator simulator = new Simulator();
+            Simulator simulator = new Simulator(new CommandParser());
             string command;
 
             Console.Write("> ");
