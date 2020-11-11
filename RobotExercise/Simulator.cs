@@ -1,21 +1,26 @@
-﻿using RobotExercise.Parsing;
+﻿using RobotExercise.Commands;
+using RobotExercise.Parsing;
+using RobotExercise.State;
 
 namespace RobotExercise
 {
     public class Simulator
     {
         private readonly ICommandParser _parser;
+        
+        private RobotState? _state;
 
         public Simulator(ICommandParser parser)
         {
             _parser = parser;
         }
 
-        public string ProcessCommand(string command)
+        public string ProcessCommand(string commandText)
         {
             try
             {
-                _parser.ParseCommand(command);
+                ICommand command = _parser.ParseCommand(commandText);
+                command.Execute(_state);
             }
             catch(InvalidCommandException)
             {

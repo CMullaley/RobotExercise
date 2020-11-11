@@ -1,6 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using RobotExercise.Commands;
 using RobotExercise.Parsing;
+using RobotExercise.State;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RobotExercise.UnitTests
 {
@@ -34,6 +37,18 @@ namespace RobotExercise.UnitTests
             string result = _simulator.ProcessCommand("INVALID");
 
             Assert.AreEqual("Bad Command", result);
+        }
+
+        [TestMethod]
+        public void CommandIsExecuted()
+        {
+            Mock<ICommand> command = new Mock<ICommand>();
+            _parser.Setup(x => x.ParseCommand(It.IsAny<string>()))
+                .Returns(command.Object);
+
+            _simulator.ProcessCommand("DO");
+
+            command.Verify(x => x.Execute(It.IsAny<RobotState>()));
         }
     }
 }

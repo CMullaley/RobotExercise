@@ -1,6 +1,6 @@
 ﻿namespace RobotExercise.State
 {
-    public enum Direction
+    public enum Facing
     {
         Undefined = 0,
         North = 1,
