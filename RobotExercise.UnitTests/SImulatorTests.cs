@@ -3,18 +3,16 @@ using Moq;
 using RobotExercise.Commands;
 using RobotExercise.Parsing;
 using RobotExercise.State;
-using System.Security.Cryptography.X509Certificates;
 
 namespace RobotExercise.UnitTests
 {
     [TestClass]
-    public class SImulatorTests
+    public class SimulatorTests
     {
-        private Simulator _simulator;
-        private Mock<ICommandParser> _parser;
+        private readonly Simulator _simulator;
+        private readonly Mock<ICommandParser> _parser;
 
-        [TestInitialize]
-        public void Initialize()
+        public SimulatorTests()
         {
             _parser = new Mock<ICommandParser>();
             _simulator = new Simulator(_parser.Object);
@@ -23,6 +21,10 @@ namespace RobotExercise.UnitTests
         [TestMethod]
         public void ValidCommandReturnsOk()
         {
+            Mock<ICommand> command = new Mock<ICommand>();
+            _parser.Setup(x => x.ParseCommand(It.IsAny<string>()))
+                .Returns(command.Object);
+
             string result = _simulator.ProcessCommand("VALID");
 
             Assert.AreEqual("Ok", result);

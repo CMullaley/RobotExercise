@@ -6,7 +6,17 @@ namespace RobotExercise.Commands
     {
         public RobotState? Execute(RobotState? state)
         {
-            throw new System.NotImplementedException();
+            if (state == null)
+            {
+                return null;
+            }
+
+            int newFacing = (int)state.Facing - 1;
+
+            return new RobotState(
+                state.X,
+                state.Y,
+                newFacing == 0 ? Facing.West : (Facing)newFacing);
         }
     }
 }

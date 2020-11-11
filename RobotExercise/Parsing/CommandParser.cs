@@ -41,7 +41,7 @@ namespace RobotExercise.Parsing
 
             if (!int.TryParse(data[0], out int x) ||
                 !int.TryParse(data[1], out int y) ||
-                !Enum.TryParse(typeof(Facing), data[2], true, out object? direction))
+                !Enum.TryParse(typeof(Facing), data[2], true, out object? facing))
             {
                 throw new InvalidCommandException();
             }

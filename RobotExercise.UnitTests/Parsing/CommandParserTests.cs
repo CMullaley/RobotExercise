@@ -8,13 +8,7 @@ namespace RobotExercise.UnitTests.Parsing
     [TestClass]
     public class CommandParserTests
     {
-        private ICommandParser _parser;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _parser = new CommandParser();
-        }
+        private readonly ICommandParser _parser = new CommandParser();
 
         [TestMethod]
         [ExpectedException(typeof(InvalidCommandException))]
