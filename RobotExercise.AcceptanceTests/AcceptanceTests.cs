@@ -6,6 +6,8 @@ namespace RobotExercise.AcceptanceTests
     [TestClass]
     public class AcceptanceTests
     {
+        // First three scenarios are the examples from the specification.
+        // Remaining examples cover the main edge cases.
         [TestMethod]
         public void ScenarioA()
         {
@@ -48,7 +50,20 @@ namespace RobotExercise.AcceptanceTests
             );
         }
 
-
+        [TestMethod]
+        public void RobotStopsAtEdge()
+        {
+            RunScenario(new[]
+                {
+                    "PLACE 4,2,EAST",
+                    "MOVE",
+                    "MOVE",
+                    "MOVE",
+                    "REPORT"
+                },
+                "4,2,EAST"
+            );
+        }
 
         private void RunScenario(string[] commands, string expectedOutput)
         {
