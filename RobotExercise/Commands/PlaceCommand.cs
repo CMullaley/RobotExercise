@@ -4,9 +4,16 @@ namespace RobotExercise.Commands
 {
     public class PlaceCommand : ICommand
     {
+        private readonly RobotState _state;
+
+        public PlaceCommand(RobotState state)
+        {
+            _state = state;
+        }
+
         public RobotState? Execute(RobotState? state)
         {
-            throw new System.NotImplementedException();
+            return _state;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace RobotExercise.Commands
     {
         public RobotState? Execute(RobotState? state)
         {
-            throw new System.NotImplementedException();
+            return state;
         }
     }
 }

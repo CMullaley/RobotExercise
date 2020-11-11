@@ -41,12 +41,13 @@ namespace RobotExercise.Parsing
 
             if (!int.TryParse(data[0], out int x) ||
                 !int.TryParse(data[1], out int y) ||
-                !Enum.TryParse(typeof(Facing), data[2], true, out object? facing))
+                !Enum.TryParse(typeof(Facing), data[2], true, out object? facing) ||
+                facing == null)
             {
                 throw new InvalidCommandException();
             }
 
-            return new PlaceCommand();
+            return new PlaceCommand(new RobotState(x, y, (Facing)facing));
         }
     }
 }
