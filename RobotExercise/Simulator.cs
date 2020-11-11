@@ -20,7 +20,13 @@ namespace RobotExercise
             try
             {
                 ICommand command = _parser.ParseCommand(commandText);
-                command.Execute(_state);
+
+                if (command is ReportCommand)
+                {
+                    return _state?.ToString() ?? string.Empty;
+                }
+
+                _state = command.Execute(_state);
             }
             catch(InvalidCommandException)
             {

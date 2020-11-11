@@ -18,5 +18,10 @@ namespace RobotExercise.State
         public int Y { get; }
 
         public Facing Facing { get; }
+
+        public override string ToString()
+        {
+            return $"{X},{Y},{Facing.ToString().ToUpper()}";
+        }
     }
 }

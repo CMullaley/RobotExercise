@@ -52,5 +52,16 @@ namespace RobotExercise.UnitTests
 
             command.Verify(x => x.Execute(It.IsAny<RobotState>()));
         }
+
+        [TestMethod]
+        public void ReportCommandOnUnitialisedStateIsSafe()
+        {
+            _parser.Setup(x => x.ParseCommand(It.IsAny<string>()))
+                .Returns(new ReportCommand());
+
+            string result = _simulator.ProcessCommand("REPORT");
+
+            Assert.AreEqual(string.Empty, result);
+        }
     }
 }
