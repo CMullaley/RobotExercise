@@ -1,4 +1,6 @@
 ﻿using RobotExercise.Commands;
+using RobotExercise.State;
+using System;
 
 namespace RobotExercise.Parsing
 {
@@ -6,18 +8,45 @@ namespace RobotExercise.Parsing
     {
         public ICommand ParseCommand(string command)
         {
-            switch (command)
+            string[]? components = command.Split(' ');
+            if (components == null || components.Length == 0)
             {
-                case "MOVE":
-                    return new MoveCommand();
-                case "LEFT":
-                    return new LeftCommand();
-                case "RIGHT":
-                    return new RightCommand();
-                case "REPORT":
-                    return new ReportCommand();
+                throw new InvalidCommandException();
             }
-            throw new InvalidCommandException();
+
+            return (components[0]) switch
+            {
+                "PLACE" => ParsePlaceCommand(components),
+                "MOVE" => new MoveCommand(),
+                "LEFT" => new LeftCommand(),
+                "RIGHT" => new RightCommand(),
+                "REPORT" => new ReportCommand(),
+                _ => throw new InvalidCommandException()
+            };
+        }
+
+        private ICommand ParsePlaceCommand(string[] components)
+        {
+            if (components.Length == 1)
+            {
+                throw new InvalidCommandException();
+            }
+
+            string[] data = components[1].Split(',');
+
+            if (data.Length != 3)
+            {
+                throw new InvalidCommandException();
+            }
+
+            if (!int.TryParse(data[0], out int x) ||
+                !int.TryParse(data[1], out int y) ||
+                !Enum.TryParse(typeof(Direction), data[2], true, out object? direction))
+            {
+                throw new InvalidCommandException();
+            }
+
+            return new PlaceCommand();
         }
     }
 }

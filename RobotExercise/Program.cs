@@ -21,7 +21,7 @@ namespace RobotExercise
                     break;
                 }
 
-                string output = simulator.ProcessCommand(command);
+                string output = simulator.ProcessCommand(command.ToUpper());
 
                 if (output != string.Empty)
                 {

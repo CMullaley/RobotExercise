@@ -34,5 +34,23 @@ namespace RobotExercise.UnitTests.Parsing
 
             Assert.IsInstanceOfType(result, type);
         }
+
+        [TestMethod]
+        public void CreatePlaceCommand()
+        {
+            ICommand result = _parser.ParseCommand("PLACE 0,0,NORTH");
+            Assert.IsInstanceOfType(result, typeof(PlaceCommand));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCommandException))]
+        [DataRow("PLACE")]
+        [DataRow("PLACE 0,0")]
+        [DataRow("PLACE EAST,1,1")]
+        [DataRow("PLACE 1,1,ELSEWHERE")]
+        public void InvalidPlaceCommand(string command)
+        {
+            _parser.ParseCommand(command);
+        }
     }
 }
