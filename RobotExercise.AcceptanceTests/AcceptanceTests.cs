@@ -66,6 +66,34 @@ namespace RobotExercise.AcceptanceTests
             );
         }
 
+        [TestMethod]
+        public void RepeatedPlaceCommand()
+        {
+            RunScenario(new[]
+                {
+                    "PLACE 2,2,EAST",
+                    "MOVE",
+                    "PLACE 1,1,SOUTH",
+                    "RIGHT",
+                    "REPORT"
+                },
+                "1,1,WEST"
+            );
+        }
+
+        [TestMethod]
+        public void UnplacedRobotIgnoresCommands()
+        {
+            RunScenario(new[]
+                {
+                    "MOVE",
+                    "RIGHT",
+                    "REPORT"
+                },
+                string.Empty
+            );
+        }
+
         private void RunScenario(string[] commands, string expectedOutput)
         {
             Simulator simulator = new Simulator(new CommandParser(), new SquareTabletop(5));
