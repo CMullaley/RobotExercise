@@ -1,18 +1,21 @@
 ﻿using RobotExercise.Commands;
 using RobotExercise.Parsing;
 using RobotExercise.State;
+using RobotExercise.Tabletops;
 
 namespace RobotExercise
 {
     public class Simulator
     {
         private readonly ICommandParser _parser;
+        private readonly ITabletop _tabletop;
         
         private RobotState? _state;
 
-        public Simulator(ICommandParser parser)
+        public Simulator(ICommandParser parser, ITabletop tabletop)
         {
             _parser = parser;
+            _tabletop = tabletop;
         }
 
         public string ProcessCommand(string commandText)
@@ -26,7 +29,12 @@ namespace RobotExercise
                     return _state?.ToString() ?? string.Empty;
                 }
 
-                _state = command.Execute(_state);
+                RobotState? targetState = command.Execute(_state);
+
+                if (targetState != null && _tabletop.IsPositionValid(targetState))
+                {
+                    _state = targetState;
+                }
             }
             catch(InvalidCommandException)
             {

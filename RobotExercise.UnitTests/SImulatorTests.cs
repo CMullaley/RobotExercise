@@ -3,6 +3,7 @@ using Moq;
 using RobotExercise.Commands;
 using RobotExercise.Parsing;
 using RobotExercise.State;
+using RobotExercise.Tabletops;
 
 namespace RobotExercise.UnitTests
 {
@@ -11,11 +12,14 @@ namespace RobotExercise.UnitTests
     {
         private readonly Simulator _simulator;
         private readonly Mock<ICommandParser> _parser;
+        private readonly Mock<ITabletop> _tabletop;
 
         public SimulatorTests()
         {
             _parser = new Mock<ICommandParser>();
-            _simulator = new Simulator(_parser.Object);
+            _tabletop = new Mock<ITabletop>();
+
+            _simulator = new Simulator(_parser.Object, _tabletop.Object);
         }
 
         [TestMethod]
@@ -62,6 +66,23 @@ namespace RobotExercise.UnitTests
             string result = _simulator.ProcessCommand("REPORT");
 
             Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
+        public void PositionIsChecked()
+        {
+            RobotState state = new RobotState(1, 4, Facing.South);
+
+            Mock<ICommand> command = new Mock<ICommand>();
+            _parser.Setup(x => x.ParseCommand(It.IsAny<string>()))
+                .Returns(command.Object);
+
+            command.Setup(x => x.Execute(It.IsAny<RobotState>()))
+                .Returns(state);
+
+            _simulator.ProcessCommand("DO");
+
+            _tabletop.Verify(x => x.IsPositionValid(state));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RobotExercise.Parsing;
+using RobotExercise.Tabletops;
 using System;
 
 namespace RobotExercise
@@ -7,7 +8,7 @@ namespace RobotExercise
     {
         static void Main()
         {
-            Simulator simulator = new Simulator(new CommandParser());
+            Simulator simulator = new Simulator(new CommandParser(), new SquareTabletop(5));
             string command;
 
             Console.Write("> ");
